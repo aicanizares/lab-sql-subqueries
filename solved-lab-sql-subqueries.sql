@@ -24,3 +24,12 @@ WHERE length > 120;
 # RETRIEVE the average length of all the films in the Sakila database.
 SELECT AVG(LENGTH) as avg_length
 from film;
+
+#3. Use a subquery to display all actors who appear in the film "Alone Trip".
+SELECT first_name, last_name
+FROM actor
+INNER JOIN film_actor
+USING (actor_id)
+WHERE film_id = ( SELECT film_id
+					FROM film
+					WHERE title = "Alone Trip" );
